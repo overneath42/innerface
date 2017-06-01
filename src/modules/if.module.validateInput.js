@@ -1,4 +1,4 @@
-/* @ flow */
+// @flow
 
 /**
  * @file The `validateInput` module.
@@ -29,14 +29,17 @@ import { isNumber, decodeString } from '../if.utils';
  *
  * @returns {boolean} - `true` if the value is valid
  */
-export default function validateInput(value: string, rules: string): boolean {
+export default function validateInputModule(
+  value: string,
+  rules: string
+): boolean {
   /**
    * Validation functions.
    *
    * @constant
    * @type {Object}
    */
-  const RULES = {
+  const RULES: MethodObject = {
     integer: (value: number | string) => {
       return isNumber(value) && Number.isInteger(Number(value));
     },
@@ -54,9 +57,7 @@ export default function validateInput(value: string, rules: string): boolean {
     }
   };
 
-  const validation = prepareValidation(rules);
-
-  return validation.reduce((isValid: boolean, params: Array<string | number>) => {
+  return prepareValidation(rules).reduce((isValid: boolean, params: Array<string | number>) => {
     if (!isValid) return false;
 
     const ruleToExecute: string = params.shift().toString();
@@ -70,10 +71,10 @@ export default function validateInput(value: string, rules: string): boolean {
    * @protected
    * @param {string} rules The provided validation rules in string format.
    *
-   * @returns {(string|number)[]} rules The ful
+   * @returns {(string|number)[]}
    */
-  function prepareValidation(rules): Array<string | number> {
-    return rules.split('|').map((rule: string): any[] => {
+  function prepareValidation(rules): (string | number)[][] {
+    return rules.split('|').map((rule: string): (string | number)[] => {
       return [].concat(
         decodeString(rule).map(part => (isNumber(part) ? Number(part) : part)),
         [value]

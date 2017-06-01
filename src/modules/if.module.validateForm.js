@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 
 /**
  * @fileOverview The `validateForm` module.
@@ -29,12 +29,12 @@ import _ from 'lodash';
  *
  * @returns {boolean}
  */
-export default function validateForm(form: HTMLFormElement, statusField: ?HTMLInputElement) {
-  const fields = [...form.querySelectorAll('input, select, textarea')].filter((field: HTMLElement) => {
+export default function validateForm(statusField: ?HTMLInputElement): boolean {
+  const fields = [...this.querySelectorAll('input, select, textarea')].filter((field: HTMLElement) => {
     return field.required && field.required === true;
   });
 
-  const formIsValid = fields.reduce((isValid, field) => {
+  const formIsValid: boolean = fields.reduce((isValid, field) => {
     if (!isValid) return false; // if already found to be invalid, leave it that way
     return !_.isEmpty(field.value && field.value);
   }, true);
