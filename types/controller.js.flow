@@ -1,0 +1,6 @@
+declare interface Controller$Interface {
+  name: string;
+  targets: NodeListObject;
+  events: MethodObject;
+  methods?: MethodObject;
+}
