@@ -1,1 +1,2 @@
 types/**/*.js.flow
+**/*.test.js
