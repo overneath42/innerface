@@ -29,8 +29,8 @@ describe('Controller', () => {
       expect(targets.testDiv.length).toBe(3);
       expect(targets.testP.length).toBe(2);
       expect(targets.testForm.length).toBe(1);
-      // expect(controller.targets.testInput.length).toBe(1);
-      // expect(controller.targets.dataSelector.length).toBe(1);
+      expect(targets.testInput.length).toBe(1);
+      expect(targets.dataSelector.length).toBe(1);
     });
   });
 });
