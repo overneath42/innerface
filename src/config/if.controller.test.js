@@ -7,22 +7,22 @@ describe('Controller', () => {
   const testFixture = controllerTestFixture();
   const controller = new Controller(testProps);
 
+  beforeEach(() => {
+    document.body.innerHTML = controllerTestFixture();
+  });
+
+  test('loads fixtures properly', () => {
+    expect(testProps.name).toBe('testController');
+    expect(document.querySelectorAll('div').length).toBe(3);
+    expect(document.querySelectorAll('p').length).toBe(2);
+  });
+
+  test('is properly created', () => {
+    expect(controller.name).toBe(testProps.name);
+    expect(controller.targets).toBe(testProps.targets);
+  });
+
   describe('getTargets', () => {
-    beforeEach(() => {
-      document.body.innerHTML = controllerTestFixture();
-    });
-
-    test('loads fixtures properly', () => {
-      expect(testProps.name).toBe('testController');
-      expect(document.querySelectorAll('div').length).toBe(3);
-      expect(document.querySelectorAll('p').length).toBe(2);
-    });
-
-    test('is properly created', () => {
-      expect(controller.name).toBe(testProps.name);
-      expect(controller.targets).toBe(testProps.targets);
-    });
-
     test('can convert all selector strings to element selections', () => {
       const targets = Controller.getTargets(testProps.name, testProps.targets);
 
@@ -31,6 +31,12 @@ describe('Controller', () => {
       expect(targets.testForm.length).toBe(1);
       expect(targets.testInput.length).toBe(1);
       expect(targets.dataSelector.length).toBe(1);
+    });
+  });
+
+  describe('initEventListeners', () => {
+    test('can initialize event objects', () => {
+
     });
   });
 });

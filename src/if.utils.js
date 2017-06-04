@@ -48,7 +48,7 @@ export function isNumber(value: string | number): boolean {
  *
  * @returns {HTMLElement}
  */
-export function findParentTag(node: HTMLElement & Node, tag: string): HTMLElement {
+export function findParentTag(node: HTMLElement & Node, tag: string): ?HTMLElement {
   while (node.parentNode) {
     node = node.parentNode;
 
@@ -56,5 +56,5 @@ export function findParentTag(node: HTMLElement & Node, tag: string): HTMLElemen
   }
 
   // the requested tag is not a parent of the original Node
-  return null;
+  return undefined;
 }
