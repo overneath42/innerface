@@ -10,6 +10,7 @@
  * @requires '../if.const.js:selectors
  */
 
+import _ from 'lodash';
 import { selectors } from '../if.const';
 
 /**
@@ -39,12 +40,13 @@ export default class Controller implements Controller$Interface {
    *
    * @returns {Object}
    */
-  static getTargets(name: string): NodeListObject {
+  static getTargets(name: string, targets?: ConfigObject): NodeListObject {
     let selectedElements: NodeListObject = {};
+    targets = targets || selectors[name];
 
-    if (selectors[name]) {
-      Object.keys(selectors[name]).forEach(key => {
-        selectedElements[key] = document.querySelectorAll(selectors[name]);
+    if (targets) {
+      _.forEach(targets, (target: string, key: string) => {
+        selectedElements[key] = document.querySelectorAll(target);
       });
     }
 

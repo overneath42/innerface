@@ -2,6 +2,12 @@ declare type ConfigObject = {
   [key: string]: string | ConfigObject
 }
 
+declare type KeyValueObject = {
+  [key: string]: {
+    [key: string]: string
+  }
+}
+
 declare type MethodObject = {
   [key: string]: Function
 }
