@@ -10,7 +10,7 @@
  * @requires '../if.const.js:selectors
  */
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { selectors } from '../if.const';
 
 /**
