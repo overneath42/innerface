@@ -3,28 +3,35 @@
 // <http://justintoon.com> TypeScript Version: 2.3
 
 interface ConfigObject {
-  [key : string] : string
+  [key: string] : string
 }
 
 interface MethodObject {
-  [key : string] : Function
+  [key: string] : Function
 }
 
 interface KeyValueObject {
-  [key : string] : {
-    [key : string]: string
+  [key: string] : {
+    [key: string]: string
   }
 }
 
 interface NodeListObject {
-  [key : string] : NodeListOf <HTMLElement | Element>
+  [key: string] : NodeListOf <HTMLElement | Element>
 }
 
 declare namespace Innerface {
-  interface Controller {
-    name : string;
+  interface IController {
+    name: string;
     targets : NodeListObject;
-    events : MethodObject;
+    events? : MethodObject;
+    methods?: MethodObject;
+  }
+
+  interface Controller {
+    name: string;
+    targets: NodeListObject;
+    events: MethodObject;
     methods?: MethodObject;
     initialize(): void;
     getTargets(name: string, targets?: string | ConfigObject): NodeListObject;

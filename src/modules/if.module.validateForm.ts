@@ -1,5 +1,7 @@
 // @flow
 
+type FormField = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+
 /**
  * @fileOverview The `validateForm` module.
  *
@@ -9,7 +11,7 @@
  * @requires NPM:lodash
  */
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 /**
  * A module for validating a form for completeness and optionally
@@ -29,13 +31,14 @@ import _ from 'lodash';
  *
  * @returns {boolean}
  */
-export default function validateForm(statusField: ?HTMLInputElement): boolean {
-  const fields = [...this.querySelectorAll('input, select, textarea')].filter((field: HTMLElement) => {
+export default function validateForm(statusField?: HTMLInputElement) : boolean {
+  const fields = [...this.querySelectorAll('input, select, textarea')].filter((field : FormField) => {
     return field.required && field.required === true;
   });
 
-  const formIsValid: boolean = fields.reduce((isValid, field) => {
-    if (!isValid) return false; // if already found to be invalid, leave it that way
+  const formIsValid: boolean = fields.reduce((isValid : boolean, field : FormField) => {
+    if (!isValid)
+      return false; // if already found to be invalid, leave it that way
     return !_.isEmpty(field.value && field.value);
   }, true);
 
