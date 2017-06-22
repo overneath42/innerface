@@ -17,7 +17,7 @@
         "outDir": "./dist",
         "target": "es5",
         "types": [
-            "inflection"
+            "jest"
         ]
     },
     "compileOnSave": false
