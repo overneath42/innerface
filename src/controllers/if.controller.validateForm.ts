@@ -47,7 +47,7 @@ export default function validateForm() {
     formChange: function eventFormChange() {
       let parentForm: HTMLElement;
 
-      targets.fields.forEach(field => {
+      Array.prototype.slice.call(targets.fields).forEach((field: HTMLElement) => {
         // TODO: this _should_ cache the parent form lookup but need to verify
         parentForm = parentForm || findParentTag(field, 'form');
 
