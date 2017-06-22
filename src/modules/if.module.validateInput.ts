@@ -1,5 +1,3 @@
-// @flow
-
 /**
  * @file The `validateInput` module.
  *

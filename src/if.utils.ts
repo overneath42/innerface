@@ -37,6 +37,9 @@ export function decodeString(name: string): string[] {
  */
 export function isNumber(value: string | number): boolean {
   return !isNaN(parseInt(value, 10));
+  // NOTE: here is an alternate version to review more closely
+  // credit to `therealbenwiley`
+  // return (value && !isNaN(value)) || value === 0;
 }
 
 /**
@@ -49,10 +52,12 @@ export function isNumber(value: string | number): boolean {
  * @returns {HTMLElement}
  */
 export function findParentTag(node: HTMLElement & Node, tag: string): ?HTMLElement {
-  while (node.parentNode) {
-    node = node.parentNode;
+  if (node.parentNode) {
+    while (node.parentNode) {
+      node = node.parentNode;
 
-    if (node.tagName === tag) return node;
+      if (node.tagName === tag.toLowerCase()) return node;
+    }
   }
 
   // the requested tag is not a parent of the original Node
