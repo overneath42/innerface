@@ -1,9 +1,0 @@
-[ignore]
-.*/node_modules/.*
-
-[libs]
-./types
-./flow-typed
-
-[options]
-unsafe.enable_getters_and_setters=true
