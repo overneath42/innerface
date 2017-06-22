@@ -1,3 +1,0 @@
-types/**/*.js.flow
-flow-typed/**/*.js
-**/*.test.js
