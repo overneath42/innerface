@@ -5,11 +5,23 @@
  * @license MIT
  */
 
+import * as _ from 'lodash';
+
 import { selectors } from './if.const';
+import * as controllers from './controllers';
 
 /**
  * A system of simple UI actions implemented with an HTML API.
  *
  * @since 0.1.0
  */
-export default class Innerface { }
+export default class Innerface {
+  /**
+   * Initialize the library.
+   */
+  init() {
+    _.forEach(controllers, (controller, index) => {
+      controller().initialize();
+    });
+  }
+ }
