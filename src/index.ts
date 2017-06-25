@@ -20,8 +20,8 @@ export default class Innerface {
    * Initialize the library.
    */
   public static init() {
-    _.forEach(controllers, (controller, index) => {
-      controller().initialize();
+    _.forEach(controllers, (controller: Innerface.Controller, key: string) => {
+      controller.initialize();
     });
   }
  }
