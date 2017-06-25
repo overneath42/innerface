@@ -35,12 +35,16 @@ export default class Controller implements Innerface.IController {
    *
    * @static
    * @param {string} name The lookup name to query for selectors.
+   * @param {(string | ConfigObject)} [targets] Predefined targets.
    *
    * @returns {Object}
    */
   public static getTargets(name: string, targets?: string | ConfigObject): NodeListObject {
     let selectedElements: NodeListObject = {};
-    targets = targets || selectors[name];
+
+    if (!targets) {
+      targets = selectors[name];
+    }
 
     if (targets) {
       _.forEach(targets, (target: string, key: string) => {
