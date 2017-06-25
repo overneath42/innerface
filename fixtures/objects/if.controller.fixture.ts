@@ -1,4 +1,4 @@
-export default function controllerFixture(targets) {
+export default function controllerFixture(targets?: Object): Object {
   return {
     name: 'testController',
     targets: targets || {

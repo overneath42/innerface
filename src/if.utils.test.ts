@@ -32,11 +32,29 @@ describe('isNumber', () => {
 });
 
 describe('findParentTag', () => {
-  test('can find the correct parent tag', () => {
+  let parser = new DOMParser();
+  let fixture, testElement;
 
+  beforeEach(() => {
+    fixture = parser.parseFromString(validateFormFixture(), 'text/html');
+    testElement = fixture.querySelector('select');
   });
 
-  test('will return undefined if the parent tag is not found', () => {
+  test('creates fixtures properly', () => {
+    expect(fixture.querySelectorAll('form').length).toBe(1);
+    expect(fixture.querySelectorAll('input').length).toBe(3);
+    expect(fixture.querySelectorAll('select').length).toBe(1);
+  });
 
+  // test('can find the correct parent tag', () => {
+  //   const findParentTest = utils.findParentTag(testElement, 'form');
+
+  //   expect(findParentTest).toBeDefined();
+  // });
+
+  test('will return undefined if the parent tag is not found', () => {
+    const findParentTest = utils.findParentTag(testElement, 'div');
+
+    expect(findParentTest).toBeUndefined();
   });
 });

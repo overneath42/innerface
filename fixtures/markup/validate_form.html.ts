@@ -1,5 +1,5 @@
-import faker from 'faker';
-import _ from 'lodash';
+import * as faker from 'faker';
+import * as _ from 'lodash';
 
 export default function validateFormFixture() {
   return `
