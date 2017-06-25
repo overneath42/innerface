@@ -31,6 +31,13 @@ export default class Controller implements Innerface.IController {
   }
 
   /**
+   * Initialize an individual Controller.
+   */
+  public initialize() {
+    Controller.initEventListeners(this.events);
+  }
+
+  /**
    * Convert a named list of selector strings into NodeLists.
    *
    * @static
