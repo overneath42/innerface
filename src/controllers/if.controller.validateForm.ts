@@ -43,11 +43,11 @@ export default function validateForm() {
    */
   const events: MethodObject = {
     formChange: function eventFormChange() {
-      let parentForm: HTMLElement;
+      let parentForm: HTMLElement | null;
 
-      Array.prototype.slice.call(targets.fields).forEach((field: HTMLElement) => {
+      [].forEach.call(targets.fields).forEach((field: HTMLElement) => {
         // TODO: this _should_ cache the parent form lookup but need to verify
-        parentForm = parentForm || findParentTag(field, 'form');
+        parentForm = parentForm || findParentTag(field, 'form') || null;
 
         if (parentForm) {
           field.addEventListener('change', validateFormModule.bind(parentForm));

@@ -3,7 +3,7 @@
 // <http://justintoon.com> TypeScript Version: 2.3
 
 interface ConfigObject {
-  [key: string] : string
+  [key: string] : string | ConfigObject
 }
 
 interface MethodObject {
@@ -17,7 +17,7 @@ interface KeyValueObject {
 }
 
 interface NodeListObject {
-  [key: string] : NodeListOf <HTMLElement | Element>
+  [key: string] : NodeListOf <HTMLElement | Element>;
 }
 
 declare namespace Innerface {
