@@ -1,5 +1,3 @@
-// @flow
-
 type FormField = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 
 /**

@@ -1,5 +1,3 @@
-// @flow
-
 /**
  * @file The controller for the `validateForm` module.
  *

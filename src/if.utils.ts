@@ -1,5 +1,3 @@
-// @flow
-
 /**
  * @file Utility methods for the Innerface framework.
  *
@@ -36,7 +34,7 @@ export function decodeString(name: string): string[] {
  * @return {Boolean}
  */
 export function isNumber(value: string | number): boolean {
-  return !isNaN(parseInt(value, 10));
+  return !isNaN(typeof value === 'number' ? value : parseInt(value, 10));
   // NOTE: here is an alternate version to review more closely
   // credit to `therealbenwiley`
   // return (value && !isNaN(value)) || value === 0;
@@ -44,19 +42,20 @@ export function isNumber(value: string | number): boolean {
 
 /**
  * Recursively search all parentNodes of given Node until the requested
- * tag name is found, then returns the Node
+ * tag name is found, then returns the Node. Returns the original if
+ * no parent is found.
  *
  * @param {HTMLElement} element The starting element.
  * @param {string} tag The tag name to locate.
  *
  * @returns {HTMLElement}
  */
-export function findParentTag(node: HTMLElement & Node, tag: string): ?HTMLElement {
+export function findParentTag(node: any, tag: string): HTMLElement | void {
   if (node.parentNode) {
     while (node.parentNode) {
       node = node.parentNode;
 
-      if (node.tagName === tag.toLowerCase()) return node;
+      if (node.tagName && (node.tagName === tag.toLowerCase())) return node;
     }
   }
 

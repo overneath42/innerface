@@ -1,5 +1,3 @@
-// @flow
-
 /**
  * Key-ordered selector strings of important
   * DOM elements.
