@@ -3,7 +3,8 @@
         "node_modules",
         "dist",
         "docs",
-        "fixtures"
+        "fixtures",
+        ".vscode"
     ],
     "compilerOptions": {
         "lib": [
@@ -14,10 +15,15 @@
         "noImplicitAny": false,
         "sourceMap": false,
         "strictNullChecks": false,
-        "outDir": "./dist",
+        "outDir": "./out",
+        "skipLibCheck": true,
         "target": "es5",
+        "typeRoots": [
+            "node_modules/@types"
+        ],
         "types": [
-            "jest"
+            "jest",
+            "lodash"
         ]
     },
     "compileOnSave": false
