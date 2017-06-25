@@ -17,13 +17,13 @@ import { selectors } from '../if.const';
  *
  * @since 0.1.0
  */
-export default class Controller implements Controller$Interface {
-  name: string;
-  targets: NodeListObject;
-  events: MethodObject;
-  methods: MethodObject;
+export default class Controller implements Innerface.IController {
+  public name: string;
+  public targets: NodeListObject;
+  public events: MethodObject;
+  public methods: MethodObject;
 
-  constructor(props: Controller$Interface) {
+  constructor(props: Innerface.IController) {
     this.name = props.name;
     this.targets = props.targets;
     this.events = props.events;
@@ -38,7 +38,7 @@ export default class Controller implements Controller$Interface {
    *
    * @returns {Object}
    */
-  static getTargets(name: string, targets?: ConfigObject): NodeListObject {
+  public static getTargets(name: string, targets?: string | ConfigObject): NodeListObject {
     let selectedElements: NodeListObject = {};
     targets = targets || selectors[name];
 
@@ -57,7 +57,7 @@ export default class Controller implements Controller$Interface {
    * @static
    * @param {Object} events An object of functions which will add event listeners when called.
    */
-  static initEventListeners(events: MethodObject) {
+  private static initEventListeners(events: MethodObject) {
     Object.keys(events).forEach(key => {
       try {
         // attempt to initialize the event
