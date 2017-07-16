@@ -7,7 +7,7 @@
 
 import {forEach} from 'lodash-es';
 
-import { SELECTORS } from './if.const';
+import {SELECTORS} from './if.const';
 import * as controllers from './controllers';
 
 /**
@@ -15,7 +15,7 @@ import * as controllers from './controllers';
  *
  * @since 0.1.0
  */
-export default class Innerface {
+class Innerface {
   /**
    * Initialize the library.
    */
@@ -24,4 +24,8 @@ export default class Innerface {
       controller().initialize();
     });
   }
- }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  Innerface.init();
+});
