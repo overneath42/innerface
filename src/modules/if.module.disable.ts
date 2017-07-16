@@ -50,7 +50,7 @@ export default function disable(targets : NodeListOf < HTMLInputElement >, condi
       if (stringCondition[1]) {
         switch (stringCondition[1]) {
           case 'length':
-            return !_.isEmpty(condition.value);
+            return !isEmpty(condition.value);
           case 'includes':
             if (stringCondition[2]) {
               const input = <HTMLInputElement>document.querySelector(stringCondition[2]);
