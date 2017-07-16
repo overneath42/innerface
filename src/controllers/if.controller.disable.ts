@@ -8,8 +8,10 @@
  * @requires ../modules/if.module.disable.js:disable
  */
 
+import * as _ from 'lodash';
+
 import Controller from '../config/if.controller';
-import { disable as disableModule } from '../modules';
+import {disable as disableModule} from '../modules';
 
 /**
  * The initialization function for creating the `disable` {@link Controller}.
@@ -31,7 +33,7 @@ export default function disable() {
    * @const
    * @type {Object}
    */
-  const targets: NodeListObject = Controller.getTargets(name);
+  const targets : NodeListObject = Controller.getTargets(name);
 
   /**
    * Events created for the `disable` {@link Controller}.
@@ -39,11 +41,14 @@ export default function disable() {
    * @const
    * @type {Object}
    */
-  const events: MethodObject = {};
+  const events : MethodObject = {
+    initOnLoad: () => {
+      window.onload = () => {
+        const {target, condition} = targets;
+        disableModule(target, condition).init();
+      }
+    }
+  };
 
-  return new Controller({
-    name,
-    targets,
-    events
-  });
+  return new Controller({name, targets, events});
 }

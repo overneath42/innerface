@@ -17,7 +17,7 @@ interface KeyValueObject {
 }
 
 interface NodeListObject {
-  [key: string] : NodeListOf <HTMLElement | Element>;
+  [key: string] : NodeListOf<T>;
 }
 
 declare namespace Innerface {
