@@ -5,7 +5,7 @@
  * @license MIT
  */
 
-import * as _ from 'lodash';
+import {forEach} from 'lodash-es';
 
 import { SELECTORS } from './if.const';
 import * as controllers from './controllers';
@@ -20,8 +20,8 @@ export default class Innerface {
    * Initialize the library.
    */
   public static init() {
-    _.forEach(controllers, (controller: Innerface.Controller, key: string) => {
-      controller.initialize();
+    forEach(controllers, (controller : () => Innerface.Controller, key : string) => {
+      controller().initialize();
     });
   }
  }

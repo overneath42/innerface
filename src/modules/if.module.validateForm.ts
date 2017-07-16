@@ -9,7 +9,7 @@ type FormField = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
  * @requires NPM:lodash
  */
 
-import * as _ from 'lodash';
+import {isEmpty} from 'lodash-es';
 
 /**
  * A module for validating a form for completeness and optionally
@@ -37,7 +37,7 @@ export default function validateForm(statusField?: HTMLInputElement) : boolean {
   const formIsValid: boolean = fields.reduce((isValid : boolean, field : FormField) => {
     if (!isValid)
       return false; // if already found to be invalid, leave it that way
-    return !_.isEmpty(field.value && field.value);
+    return !isEmpty(field.value && field.value);
   }, true);
 
   if (statusField) {

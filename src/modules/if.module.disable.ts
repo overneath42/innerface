@@ -13,7 +13,7 @@
  * @since 0.1.0
  */
 
-import * as _ from 'lodash';
+import {filter, forEach, includes, isEmpty} from 'lodash-es';
 import {STATES} from '../if.const';
 
 export default function disable(targets : NodeListOf < HTMLInputElement >, conditions : NodeListOf < HTMLInputElement >) : {
@@ -57,7 +57,8 @@ export default function disable(targets : NodeListOf < HTMLInputElement >, condi
               const testGroup : string[] = JSON
                 .parse(input.value || '')
                 .map((val : string) => val.toString());
-              return _.includes(testGroup, condition.value)
+
+              return includes(testGroup, condition.value)
             } else {
               return false;
             }
@@ -81,7 +82,7 @@ export default function disable(targets : NodeListOf < HTMLInputElement >, condi
    * @returns {HTMLElement}
    */
   function getConditionField(target : HTMLInputElement) : HTMLInputElement {
-    return _.filter(conditions, (item, index) => item.dataset.uiDisableCondition === target.dataset.uiCondition)[0];
+    return filter(conditions, (item, index) => item.dataset.uiDisableCondition === target.dataset.uiCondition)[0];
   }
 
   /**
@@ -115,7 +116,7 @@ export default function disable(targets : NodeListOf < HTMLInputElement >, condi
      * Initialize the module for a set of targets.
      */
   function init() {
-    _.forEach(targets, (target, index) => {
+    forEach(targets, (target, index) => {
       const id : string = target
         .dataset
         .uiDisable

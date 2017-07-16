@@ -8,8 +8,6 @@
  * @requires ../modules/if.module.disable.js:disable
  */
 
-import * as _ from 'lodash';
-
 import Controller from '../config/if.controller';
 import {disable as disableModule} from '../modules';
 

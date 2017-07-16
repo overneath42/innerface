@@ -11,7 +11,12 @@ const commonConfig : webpack.Configuration = {
       // 'awesome-typescript-loader'.
       {
         test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader'
+        exclude: /node_modules/,
+        enforce: 'pre',
+        use: [
+          'awesome-typescript-loader',
+          'lodash-ts-webpack-plugin'
+        ]
       },
 
       // All output '.js' files will have any sourcemaps re-processed by
@@ -22,9 +27,6 @@ const commonConfig : webpack.Configuration = {
         loader: 'source-map-loader'
       }
     ]
-  },
-  externals: {
-    lodash: '_'
   }
 }
 

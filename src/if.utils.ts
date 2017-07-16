@@ -4,11 +4,9 @@
  * @author Justin Toon
  * @version 0.1.0
  *
- * @requires NPM:lodash
  * @requires NPM:inflection
  */
 
-import * as _ from 'lodash';
 import * as inflection from 'inflection';
 
 /**
@@ -103,7 +101,7 @@ export function createDataFieldSelector(selectorString : string, dataAttr : stri
     dataAttr = inflection.transform(dataAttr, ['underscore', 'dasherize']);
   }
 
-  if (_.startsWith(selectorString, '^')) {
+  if (selectorString.startsWith('^')) {
     operator = `${selectorString.slice(0, 1)}${operator}`;
     selectorString = selectorString.slice(1);
   }
