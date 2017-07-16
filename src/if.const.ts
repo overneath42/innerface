@@ -20,7 +20,7 @@ export const SELECTORS: ConfigObject = {
   },
   validateForm: {
     form: '[data-if-validate-form]',
-    fields: '[data-if-validate-form] :input:not([data-ui-validate-form-status])',
+    fields: '[data-if-validate-form] input:not([data-ui-validate-form-status])',
     status: '[data-if-validate-form-status]'
   }
 };
