@@ -34,6 +34,6 @@ declare namespace Innerface {
     events: MethodObject;
     methods?: MethodObject;
     initialize(): void;
-    getTargets(name: string, targets?: string | ConfigObject): NodeListObject;
+    static getTargets(name: string, targets?: string | ConfigObject): NodeListObject;
   }
 }

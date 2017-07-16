@@ -80,13 +80,12 @@ export default function disable(targets : NodeListOf < HTMLInputElement >, condi
   }
 
   /**
-     * Sets a listener on a condition field to watch for changes.
-     *
-     * @protected
-     * @param {HTMLInputElement} target The element to affect.
-     * @param {HTMLInputElement} condition The conditional field.
-     *
-     */
+   * Sets a listener on a condition field to watch for changes.
+   *
+   * @protected
+   * @param {HTMLInputElement} target The element to affect.
+   * @param {HTMLInputElement} condition The conditional field.
+   */
   function setListener(target : HTMLInputElement, condition : HTMLInputElement) : void {
     condition.addEventListener('change', event => {
       setState(target, shouldBeDisabled(condition));
@@ -94,11 +93,12 @@ export default function disable(targets : NodeListOf < HTMLInputElement >, condi
   }
 
   /**
-     * Set a disabled state on a target.
-     *
-     * @param {HTMLInputElement} target The target to affect.Î
-     * @param {boolean} isDisabled Whether or not to disable.
-     */
+   *
+   * Set a disabled state on a target.
+   *
+   * @param {HTMLInputElement} target The target to affect.
+   * @param {boolean} isDisabled Whether or not to disable.
+   */
   function setState(target : HTMLInputElement, isDisabled : boolean) {
     target.disabled = isDisabled === true;
     target
@@ -107,8 +107,8 @@ export default function disable(targets : NodeListOf < HTMLInputElement >, condi
   };
 
   /**
-     * Initialize the module for a set of targets.
-     */
+   * Initialize the module for a set of targets.
+   */
   function init() {
     forEach(targets, (target, index) => {
       const id : string = target

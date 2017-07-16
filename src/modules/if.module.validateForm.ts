@@ -14,9 +14,6 @@ import {isEmpty} from 'lodash-es';
 /**
  * A module for validating a form for completeness and optionally
  * setting a hidden field with the validation status.
- *
- * @module innerface/validateForm
- * @export
  */
 
 /**
@@ -24,7 +21,6 @@ import {isEmpty} from 'lodash-es';
  *
  * @since 0.1.0
  *
- * @param {HTMLFormElement} form The form to validate.
  * @param {HTMLInputElement} [statusField] An optional field to set a value on.
  *
  * @returns {boolean}
