@@ -30,9 +30,12 @@ import {isEmpty} from 'lodash-es';
  * @returns {boolean}
  */
 export default function validateForm(statusField?: HTMLInputElement) : boolean {
-  const fields = [...this.querySelectorAll('input, select, textarea')].filter((field : FormField) => {
-    return field.required && field.required === true;
-  });
+  const fields = []
+    .forEach
+    .call(this.querySelectorAll('input, select, textarea'))
+    .filter((field : FormField) => {
+      return field.required && field.required === true;
+    });
 
   const formIsValid: boolean = fields.reduce((isValid : boolean, field : FormField) => {
     if (!isValid)

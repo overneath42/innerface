@@ -28,32 +28,26 @@ export default function disable(targets : NodeListOf < HTMLInputElement >, condi
   * @return {boolean} - <code>true</code> if the field should be disabled.
   */
   function shouldBeDisabled(condition : HTMLInputElement) : boolean {
-    if(condition.type === 'checkbox') {
-      const checkboxCondition : string[] = condition
-        .dataset
-        .uiDisableCondition
-        .toString()
-        .split('|');
+    const conditionValue : string[] = condition
+      .dataset
+      .ifDisableCondition
+      .toString()
+      .split('|');
 
+    if (condition.type === 'checkbox') {
       const isChecked = condition.checked;
 
-      return checkboxCondition[1].startsWith('!')
+      return conditionValue[1] && conditionValue[1].startsWith('!')
         ? !isChecked
         : isChecked;
     } else {
-      const stringCondition : string[] = condition
-        .dataset
-        .uiDisableCondition
-        .toString()
-        .split('|');
-
-      if (stringCondition[1]) {
-        switch (stringCondition[1]) {
+      if (conditionValue[1]) {
+        switch (conditionValue[1]) {
           case 'length':
             return !isEmpty(condition.value);
           case 'includes':
-            if (stringCondition[2]) {
-              const input = <HTMLInputElement>document.querySelector(stringCondition[2]);
+            if (conditionValue[2]) {
+              const input : HTMLInputElement = <HTMLInputElement > document.querySelector(conditionValue[2]);
               const testGroup : string[] = JSON
                 .parse(input.value || '')
                 .map((val : string) => val.toString());
@@ -65,7 +59,7 @@ export default function disable(targets : NodeListOf < HTMLInputElement >, condi
           default:
             return condition
               .value
-              .toString() === stringCondition[1];
+              .toString() === conditionValue[1];
         }
       } else {
         return condition.value === 'true';
@@ -119,7 +113,7 @@ export default function disable(targets : NodeListOf < HTMLInputElement >, condi
     forEach(targets, (target, index) => {
       const id : string = target
         .dataset
-        .uiDisable
+        .ifDisable
         .toString();
 
       const condition : HTMLInputElement = getConditionField(target);

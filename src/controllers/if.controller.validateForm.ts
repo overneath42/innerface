@@ -10,15 +10,15 @@
  */
 
 import Controller from '../config/if.controller';
-import { validateForm as validateFormModule } from '../modules';
-import { findParentTag } from '../if.utils';
+import {validateForm as validateFormModule} from '../modules';
+import {findParentTag} from '../if.utils';
 
 /**
  * The initialization function for creating the `validateForm` {@link Controller}.
  *
  * @returns {Controller}
  */
-export default function validateForm() {
+export default function validateForm() : Controller {
   /**
    * The name of the controller.
    *
@@ -43,22 +43,49 @@ export default function validateForm() {
    */
   const events: MethodObject = {
     formChange: function eventFormChange() {
-      let parentForm: HTMLElement | null;
+      let parentForm : HTMLElement | null;
 
-      [].forEach.call(targets.fields).forEach((field: HTMLElement) => {
-        // TODO: this _should_ cache the parent form lookup but need to verify
-        parentForm = parentForm || findParentTag(field, 'form') || null;
+      window.addEventListener('load', methods.init.bind(parentForm));
 
-        if (parentForm) {
-          field.addEventListener('change', validateFormModule.bind(parentForm));
-        }
-      });
+      []
+        .forEach
+        .call(targets.fields)
+        .forEach((field : HTMLElement) => {
+          // TODO: this _should_ cache the parent form lookup but need to verify
+          parentForm = parentForm || findParentTag(field, 'form') || null;
+
+          if (parentForm) {
+            field.addEventListener('change', methods.init.bind(parentForm));
+          }
+        });
     }
   };
 
-  return new Controller({
-    name,
-    targets,
-    events
-  });
+  /**
+   * Methods used by the `validateForm` `Controller`.
+   *
+   * @module validateForm/methods
+   */
+  const methods: MethodObject = {
+    /**
+       * Initialize the form validation.
+       *
+       * @param {Event} event The event data from `eventFormChange`
+       */
+    init: function methodsValidateFormInit(event : Event) {
+      const form : HTMLFormElement = this;
+
+      if (form) {
+        if (form.hasAttribute('novalidate')) {
+          form.setAttribute('novalidate', '');
+        }
+
+        // const statusField : Node | undefined = targets
+        //   .status
+        //   .item(0);
+      }
+    }
+  }
+
+  return new Controller({name, targets, events});
 }
