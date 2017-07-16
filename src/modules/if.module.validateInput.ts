@@ -18,23 +18,27 @@ import {isNumber, decodeString} from '../if.utils';
  */
 
 /**
- * Validate a form field.
+ * Validate a form field against one or more rules.
  *
  * @since 0.1.0
  *
- * @param {string} value - The value to validate.
- * @param {string} rules - A pipe-separated list of one or more rules.
+ * @param {string} value The value to validate.
+ * @param {string} originalValue The value to validate.
+ * @param {string} rules A pipe-separated list of one or more rules.
  *
- * @returns {boolean} - `true` if the value is valid
+ * @returns {boolean} Returns `true` if the value is valid.
  */
-export default function validateInputModule(value : string, rules : string) : boolean {
+export default function validateInput(input : HTMLInputElement) : {
+  check(): void
+}
+{
   /**
    * Validation functions.
    *
    * @constant
    * @type {Object}
    */
-  const RULES: MethodObject = {
+  const RULES : MethodObject = {
     integer: (value : number | string) => {
       return isNumber(value) && Number.isInteger(Number(value));
     },
@@ -52,26 +56,16 @@ export default function validateInputModule(value : string, rules : string) : bo
     }
   };
 
-  return prepareValidation(rules).reduce((isValid : boolean, params : Array < string | number >) => {
-    if (!isValid)
-      return false;
-
-    const ruleToExecute : string = params
-      .shift()
-      .toString();
-
-    return RULES[ruleToExecute](...params);
-  }, true);
-
   /**
    * Prepares the validation rules.
    *
    * @protected
    * @param {string} rules The provided validation rules in string format.
+   * @param {string} value The value to validate against.
    *
    * @returns {(string|number)[]}
    */
-  function prepareValidation(rules): (string | number)[][]{
+  function prepareValidation(rules : string, value : string) : (string | number)[][]{
     return rules
       .split('|')
       .map((rule : string) : (string | number)[] => {
@@ -80,4 +74,30 @@ export default function validateInputModule(value : string, rules : string) : bo
           : part)), [value]);
       });
   }
+
+  function isValidInput(rules : string, value : string) {
+    return prepareValidation(rules, value).reduce((isValid : boolean, params : (string | number)[]) => {
+      if (!isValid)
+        return false;
+
+      const ruleToExecute : string = params
+        .shift()
+        .toString();
+
+      return RULES[ruleToExecute](...params);
+    }, true);
+  }
+
+  /**
+   * Initialize the module.
+   */
+  function check() {
+    const validationRules : string = input.dataset.ifValidateInput;
+
+    if (!isValidInput(validationRules, input.value)) {
+      input.value = input.dataset.previousValue;
+    }
+  }
+
+  return {check};
 }

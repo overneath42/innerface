@@ -108,3 +108,16 @@ export function createDataFieldSelector(selectorString : string, dataAttr : stri
 
   return `[${dataAttr}${operator}"${selectorString}"]`;
 }
+
+/**
+ * Attach multiple event listeners using the same callback.
+ *
+ * @param {*} el The element to attach to.
+ * @param {string} str A space-separated list of events.
+ * @param {Function} fn The callback function.
+ */
+export function addEventListeners < T extends HTMLElement > (el : T, str : string, fn : (event: Event) => any) {
+  str
+    .split(' ')
+    .forEach(e => el.addEventListener(e, fn, false));
+}

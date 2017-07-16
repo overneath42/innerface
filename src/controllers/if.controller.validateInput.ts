@@ -4,12 +4,16 @@
  * @author Justin Toon
  * @license MIT
  *
+ * @requires NPM:lodash-es
  * @requires ../config/if.controller.js:controller
  * @requires ../modules/if.module.validateInput.js:validateInput
  */
 
+import {forEach} from 'lodash-es';
+
 import Controller from '../config/if.controller';
-import { validateInput as validateInputModule } from '../modules';
+import {addEventListeners} from '../if.utils';
+import {validateInput as validateInputModule} from '../modules';
 
 /**
  * The initialization function for creating the `validateForm` {@link Controller}.
@@ -31,7 +35,7 @@ export default function validateInput() {
    * @const
    * @type {Object}
    */
-  const targets: NodeListObject = Controller.getTargets(name);
+  const targets : NodeListObject = Controller.getTargets(name);
 
   /**
    * Events created for the `validateInput` {@link Controller}.
@@ -39,11 +43,23 @@ export default function validateInput() {
    * @const
    * @type {Object}
    */
-  const events: MethodObject = {};
+  const events : MethodObject = {
+    validateInputChange: function eventsValidateInputChange() {
+      forEach(targets.target, (target : HTMLInputElement, index : number) => {
+        addEventListeners(target, 'focusin keydown', (event) => {
+          const input = <HTMLInputElement>event.target;
 
-  return new Controller({
-    name,
-    targets,
-    events
-  });
+          input.dataset.previousValue = input.value;
+        });
+
+        addEventListeners(target, 'change keyup', (event) => {
+          const input = <HTMLInputElement>event.target;
+
+          validateInputModule(input).check();
+        });
+      });
+    }
+  };
+
+  return new Controller({name, targets, events});
 }
