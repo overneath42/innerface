@@ -1,5 +1,5 @@
 import * as faker from 'faker';
-import * as _ from 'lodash';
+import {random, times} from 'lodash-es';
 
 export default function validateFormFixture() {
   return `
@@ -7,7 +7,7 @@ export default function validateFormFixture() {
       <input type="text" value="${faker.random.words(5)}" required>
       <input type="number" required>
       <select>
-        ${_.times(_.random(1, 5), index => {
+        ${times(random(1, 5), index => {
           return `<option value="${index}">${faker.random.word()}</option>`;
         })}
       </select>
