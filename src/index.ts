@@ -7,7 +7,7 @@
 
 import * as _ from 'lodash';
 
-import { selectors } from './if.const';
+import { SELECTORS } from './if.const';
 import * as controllers from './controllers';
 
 /**

@@ -9,7 +9,7 @@
  */
 
 import * as _ from 'lodash';
-import { selectors } from '../if.const';
+import { SELECTORS } from '../if.const';
 
 /**
  * A generic prototype for creating a function
@@ -50,7 +50,7 @@ export default class Controller implements Innerface.IController {
     let selectedElements: NodeListObject = {};
 
     if (!targets) {
-      targets = selectors[name];
+      targets = SELECTORS[name];
     }
 
     if (targets) {
