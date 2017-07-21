@@ -1,5 +1,5 @@
-import * as utils from './if.utils';
-import validateFormFixture from '../fixtures/markup/validate_form.html';
+import * as utils from '../if.utils';
+import validateFormFixture from '../../fixtures/markup/validate_form.html';
 
 describe('decodeString', () => {
   test('can decode a string into component parts', () => {
@@ -24,7 +24,7 @@ describe('isNumber', () => {
         utils.isNumber('a'),
         utils.isNumber('three')
       ]
-    }
+    };
 
     expect(tests.true.every(test => test === true)).toBe(true);
     expect(tests.false.every(test => test === false)).toBe(true);
@@ -33,7 +33,8 @@ describe('isNumber', () => {
 
 describe('findParentTag', () => {
   let parser = new DOMParser();
-  let fixture, testElement;
+  let fixture;
+  let testElement;
 
   beforeEach(() => {
     fixture = parser.parseFromString(validateFormFixture(), 'text/html');
@@ -56,5 +57,25 @@ describe('findParentTag', () => {
     const findParentTest = utils.findParentTag(testElement, 'div');
 
     expect(findParentTest).toBeUndefined();
+  });
+});
+
+describe('createDataFieldSelector', () => {
+  test('creates correct selector strings', () => {
+    const tests = [
+      utils.createDataFieldSelector('testSelectorString', 'dataIfTestAttribute'),
+      utils.createDataFieldSelector('testSelectorString', 'dataSampleAttribute'),
+      utils.createDataFieldSelector('^testSelectorString', 'dataUiVerifyTarget')
+    ];
+
+    const expectedResults = [
+      '[data-if-test-attribute="testSelectorString"]',
+      '[data-sample-attribute="testSelectorString"]',
+      '[data-ui-verify-target^="testSelectorString"]'
+    ];
+
+    tests.forEach((result, index) => {
+      expect(result).toBe(expectedResults[index]);
+    });
   });
 });

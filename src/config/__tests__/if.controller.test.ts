@@ -1,6 +1,6 @@
-import Controller from './if.controller';
-import controllerFixture from '../../fixtures/objects/if.controller.fixture';
-import controllerTestFixture from '../../fixtures/markup/controller_test.html';
+import Controller from '../if.controller';
+import controllerFixture from '../../../fixtures/objects/if.controller.fixture';
+import controllerTestFixture from '../../../fixtures/markup/controller_test.html';
 
 describe('Controller', () => {
   const testProps: any = controllerFixture();
@@ -34,9 +34,9 @@ describe('Controller', () => {
     // });
   });
 
-  describe('initEventListeners', () => {
-    test('can initialize event objects', () => {
+  // describe('initEventListeners', () => {
+  //   test('can initialize event objects', () => {
 
-    });
-  });
+  //   });
+  // });
 });
