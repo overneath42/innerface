@@ -1,8 +1,5 @@
 {
-  "files": [
-    "./typings.d.ts",
-    "src/index.ts"
-  ],
+  "files": ["./typings.d.ts", "src/index.ts"],
   "exclude": [
     "node_modules",
     "config/**/*",
@@ -13,8 +10,8 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
-    "lib": ["dom", "es6"],
-    "module": "es2015",
+    "lib": ["dom", "es5", "es6"],
+    "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "sourceMap": true,
@@ -25,9 +22,9 @@
     },
     "strictNullChecks": false,
     "skipLibCheck": true,
-    "target": "es5",
+    "target": "es6",
     "typeRoots": ["node_modules/@types"],
-    "types": ["jest", "lodash", "inflection"]
+    "types": ["jest", "lodash-es", "inflection"]
   },
   "compileOnSave": true
 }
