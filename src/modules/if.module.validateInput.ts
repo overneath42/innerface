@@ -1,4 +1,4 @@
-import { Global } from '../typings.d';
+import { Global } from '../../typings.d';
 
 /**
  * @file The `validateInput` module.

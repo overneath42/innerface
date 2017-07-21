@@ -56,19 +56,18 @@ export function isNumber(value: string | number): boolean {
 export function findParentTag<I extends HTMLElement, O extends HTMLElement>(
   node: I,
   tag: string
-): O | void {
-  if (node.parentNode) {
-    while (node.parentNode) {
-      node = node.parentNode as I;
+): O | I {
+  const parent = node.parentNode as O;
 
-      if (node.tagName && node.tagName === tag.toLowerCase()) {
-        return node;
-      }
+  if (parent) {
+    if (parent.tagName && parent.tagName === tag.toLowerCase()) {
+      return parent;
+    } else {
+      return findParentTag<I, O>(parent.parentNode as I, tag);
     }
+  } else {
+    return node;
   }
-
-  // the requested tag is not a parent of the original Node
-  return undefined;
 }
 
 /**

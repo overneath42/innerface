@@ -21,6 +21,8 @@ export namespace Global {
   export interface NodeListObject {
     [key: string]: NodeListOf<any>;
   }
+
+  export type FormField = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 }
 
 declare class Innerface {
@@ -41,6 +43,6 @@ export namespace If {
     events: MethodObject;
     methods?: MethodObject;
     initialize(): void;
-    // static getTargets(name: string, targets?: string | ConfigObject): NodeListObject;
+    static getTargets(name: string, targets?: string | ConfigObject): NodeListObject;
   }
 }
