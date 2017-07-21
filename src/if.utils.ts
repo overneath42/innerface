@@ -17,9 +17,9 @@ import * as inflection from 'inflection';
  *
  * @returns {array} An array of strings extracted from the original string.
  */
-export function decodeString(name : string) : string[] {
+export function decodeString(name: string): string[] {
   const regex = /(\w+)/g;
-  let params : string[] = [];
+  let params: string[] = [];
   let match;
 
   // loop through all RegEx matches and push results to an array
@@ -37,10 +37,8 @@ export function decodeString(name : string) : string[] {
  *
  * @return {Boolean}
  */
-export function isNumber(value : string | number) : boolean {
-  return !isNaN(typeof value === 'number'
-    ? value
-    : parseInt(value, 10));
+export function isNumber(value: string | number): boolean {
+  return !isNaN(typeof value === 'number' ? value : parseInt(value, 10));
   // NOTE: here is an alternate version to review more closely credit to
   // `therealbenwiley` return (value && !isNaN(value)) || value === 0;
 }
@@ -55,15 +53,19 @@ export function isNumber(value : string | number) : boolean {
  *
  * @returns {HTMLElement}
  */
-export function findParentTag(node : any, tag : string) : HTMLElement | void {
-  if(node.parentNode) {
+export function findParentTag<I extends HTMLElement, O extends HTMLElement>(
+  node: I,
+  tag: string
+): O | void {
+  if (node.parentNode) {
     while (node.parentNode) {
-      node = node.parentNode;
+      node = node.parentNode as I;
 
-      if (node.tagName && (node.tagName === tag.toLowerCase()))
+      if (node.tagName && node.tagName === tag.toLowerCase()) {
         return node;
       }
     }
+  }
 
   // the requested tag is not a parent of the original Node
   return undefined;
@@ -94,7 +96,10 @@ export function findParentTag(node : any, tag : string) : HTMLElement | void {
  *
  * @return {string} - The formatted selector string.
  */
-export function createDataFieldSelector(selectorString : string, dataAttr : string) : string {
+export function createDataFieldSelector(
+  selectorString: string,
+  dataAttr: string
+): string {
   let operator = '=';
 
   if (dataAttr.indexOf('-') === -1) {
@@ -116,8 +121,10 @@ export function createDataFieldSelector(selectorString : string, dataAttr : stri
  * @param {string} str A space-separated list of events.
  * @param {Function} fn The callback function.
  */
-export function addEventListeners < T extends HTMLElement > (el : T, str : string, fn : (event: Event) => any) {
-  str
-    .split(' ')
-    .forEach(e => el.addEventListener(e, fn, false));
+export function addEventListeners<T extends HTMLElement>(
+  el: T,
+  str: string,
+  fn: (event: Event) => any
+) {
+  str.split(' ').forEach(e => el.addEventListener(e, fn, false));
 }

@@ -1,3 +1,5 @@
+import { Global } from '../typings.d';
+
 /**
  * @file The `validateInput` module.
  *
@@ -8,7 +10,7 @@
  * @requires ../if.utils.js:decodeString
  */
 
-import {isNumber, decodeString} from '../if.utils';
+import { isNumber, decodeString } from '../if.utils';
 
 /**
  * A module for validating form fields based on one or more rules.
@@ -25,33 +27,32 @@ import {isNumber, decodeString} from '../if.utils';
  * @param {string} value The value to validate.
  * @param {string} originalValue The value to validate.
  * @param {string} rules A pipe-separated list of one or more rules.
- *
- * @returns {boolean} Returns `true` if the value is valid.
  */
-export default function validateInput(input : HTMLInputElement) : {
-  check(): void
-}
-{
+export default function validateInput(
+  input: HTMLInputElement
+): {
+  check(): void;
+} {
   /**
    * Validation functions.
    *
    * @constant
    * @type {Object}
    */
-  const RULES : MethodObject = {
-    integer: (value : number | string) => {
+  const RULES: Global.MethodObject = {
+    integer: (value: number | string) => {
       return isNumber(value) && Number.isInteger(Number(value));
     },
-    greaterThan: (limit : number, value : number | string) => {
+    greaterThan: (limit: number, value: number | string) => {
       return isNumber(value) && Number(value) > limit;
     },
-    greaterThanOrEqualTo: (limit : number, value : number | string) => {
+    greaterThanOrEqualTo: (limit: number, value: number | string) => {
       return isNumber(value) && Number(value) >= limit;
     },
-    lessThan: (limit : number, value : number | string) => {
+    lessThan: (limit: number, value: number | string) => {
       return isNumber(value) && Number(value) < limit;
     },
-    lessThanOrEqualTo: (limit : number, value : number | string) => {
+    lessThanOrEqualTo: (limit: number, value: number | string) => {
       return isNumber(value) && Number(value) <= limit;
     }
   };
@@ -65,24 +66,26 @@ export default function validateInput(input : HTMLInputElement) : {
    *
    * @returns {(string|number)[]}
    */
-  function prepareValidation(rules : string, value : string) : (string | number)[][]{
-    return rules
-      .split('|')
-      .map((rule : string) : (string | number)[] => {
-        return [].concat(decodeString(rule).map(part => (isNumber(part)
-          ? Number(part)
-          : part)), [value]);
-      });
+  function prepareValidation(
+    rules: string,
+    value: string
+  ): (string | number)[][] {
+    return rules.split('|').map((rule: string): (string | number)[] => {
+      return [].concat(
+        decodeString(rule).map(part => (isNumber(part) ? Number(part) : part)),
+        [value]
+      );
+    });
   }
 
-  function isValidInput(rules : string, value : string) {
-    return prepareValidation(rules, value).reduce((isValid : boolean, params : (string | number)[]) => {
-      if (!isValid)
-        return false;
+  function isValidInput(rules: string, value: string) {
+    return prepareValidation(
+      rules,
+      value
+    ).reduce((isValid: boolean, params: (string | number)[]) => {
+      if (!isValid) return false;
 
-      const ruleToExecute : string = params
-        .shift()
-        .toString();
+      const ruleToExecute: string = params.shift().toString();
 
       return RULES[ruleToExecute](...params);
     }, true);
@@ -92,12 +95,12 @@ export default function validateInput(input : HTMLInputElement) : {
    * Initialize the module.
    */
   function check() {
-    const validationRules : string = input.dataset.ifValidateInput;
+    const validationRules: string = input.dataset.ifValidateInput;
 
     if (!isValidInput(validationRules, input.value)) {
       input.value = input.dataset.previousValue;
     }
   }
 
-  return {check};
+  return { check };
 }

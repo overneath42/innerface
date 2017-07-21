@@ -1,10 +1,12 @@
+import { Global } from '../typings.d';
+
 /**
  * Key-ordered selector strings of important DOM elements.
-  *
-  * @constant
-  * @type {object}
-  */
-export const SELECTORS: ConfigObject = {
+ *
+ * @constant
+ * @type {object}
+ */
+export const SELECTORS: Global.ConfigObject = {
   disable: {
     target: '[data-if-disable]',
     condition: '[data-if-disable-condition]'

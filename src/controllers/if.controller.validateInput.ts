@@ -1,3 +1,5 @@
+import { Global } from '../../typings.d';
+
 /**
  * @file The controller for the `validateInput` module.
  *
@@ -9,18 +11,18 @@
  * @requires ../modules/if.module.validateInput.js:validateInput
  */
 
-import {forEach} from 'lodash-es';
+import { forEach } from 'lodash-es';
 
 import Controller from '../config/if.controller';
-import {addEventListeners} from '../if.utils';
-import {validateInput as validateInputModule} from '../modules';
+import { addEventListeners } from '../if.utils';
+import validateInputModule from '../modules/if.module.validateInput';
 
 /**
  * The initialization function for creating the `validateForm` {@link Controller}.
  *
  * @returns {Controller}
  */
-export default function validateInput() {
+export default function validateInput(): Controller {
   /**
    * The name of the controller.
    *
@@ -35,7 +37,7 @@ export default function validateInput() {
    * @const
    * @type {Object}
    */
-  const targets : NodeListObject = Controller.getTargets(name);
+  const targets: Global.NodeListObject = Controller.getTargets(name);
 
   /**
    * Events created for the `validateInput` {@link Controller}.
@@ -43,17 +45,17 @@ export default function validateInput() {
    * @const
    * @type {Object}
    */
-  const events : MethodObject = {
+  const events: Global.MethodObject = {
     validateInputChange: function eventsValidateInputChange() {
-      forEach(targets.target, (target : HTMLInputElement, index : number) => {
-        addEventListeners(target, 'focusin keydown', (event) => {
-          const input = <HTMLInputElement>event.target;
+      forEach(targets.target, (target: HTMLInputElement, index: number) => {
+        addEventListeners(target, 'focusin keydown', event => {
+          const input = event.target as HTMLInputElement;
 
           input.dataset.previousValue = input.value;
         });
 
-        addEventListeners(target, 'change keyup', (event) => {
-          const input = <HTMLInputElement>event.target;
+        addEventListeners(target, 'change keyup', event => {
+          const input = event.target as HTMLInputElement;
 
           validateInputModule(input).check();
         });
@@ -61,5 +63,5 @@ export default function validateInput() {
     }
   };
 
-  return new Controller({name, targets, events});
+  return new Controller({ name, targets, events });
 }

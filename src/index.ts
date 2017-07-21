@@ -5,9 +5,10 @@
  * @license MIT
  */
 
-import {forEach} from 'lodash-es';
+import { If } from '../typings.d';
+import { forEach } from 'lodash-es';
 
-import {SELECTORS} from './if.const';
+import { SELECTORS } from './if.const';
 import * as controllers from './controllers';
 
 /**
@@ -20,7 +21,7 @@ class Innerface {
    * Initialize the library.
    */
   public static init() {
-    forEach(controllers, (controller : () => Innerface.Controller, key : string) => {
+    forEach(controllers, (controller: () => If.Controller, key: string) => {
       controller().initialize();
     });
   }

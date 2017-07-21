@@ -1,3 +1,5 @@
+import { Global } from '../../typings.d';
+
 /**
  * @file The controller for the `disable` module.
  *
@@ -9,14 +11,14 @@
  */
 
 import Controller from '../config/if.controller';
-import {disable as disableModule} from '../modules';
+import disableModule from '../modules/if.module.disable';
 
 /**
  * The initialization function for creating the `disable` {@link Controller}.
  *
  * @returns {Controller}
  */
-export default function disable() {
+export default function disable(): Controller {
   /**
    * The name of the controller.
    *
@@ -31,7 +33,7 @@ export default function disable() {
    * @const
    * @type {Object}
    */
-  const targets : NodeListObject = Controller.getTargets(name);
+  const targets: Global.NodeListObject = Controller.getTargets(name);
 
   /**
    * Events created for the `disable` {@link Controller}.
@@ -39,14 +41,14 @@ export default function disable() {
    * @const
    * @type {Object}
    */
-  const events : MethodObject = {
+  const events: Global.MethodObject = {
     initOnLoad: () => {
       window.onload = () => {
-        const {target, condition} = targets;
+        const { target, condition } = targets;
         disableModule(target, condition).init();
-      }
+      };
     }
   };
 
-  return new Controller({name, targets, events});
+  return new Controller({ name, targets, events });
 }

@@ -2,29 +2,36 @@
 // https://github.com/overneath42/innerface Definitions by: Justin Toon
 // <http://justintoon.com> TypeScript Version: 2.3
 
-interface ConfigObject {
-  [key: string] : string | ConfigObject
-}
 
-interface MethodObject {
-  [key: string] : Function
-}
+export namespace Global {
+  export interface ConfigObject {
+    [key: string]: string | ConfigObject;
+  }
 
-interface KeyValueObject {
-  [key: string] : {
-    [key: string]: string
+  export interface MethodObject {
+    [key: string]: Function;
+  }
+
+  export interface KeyValueObject {
+    [key: string]: {
+      [key: string]: string;
+    };
+  }
+
+  export interface NodeListObject {
+    [key: string]: NodeListOf<any>;
   }
 }
 
-interface NodeListObject {
-  [key: string] : NodeListOf<T>;
+declare class Innerface {
+  public static init(): void;
 }
 
-declare namespace Innerface {
+export namespace If {
   interface IController {
     name: string;
-    targets : NodeListObject;
-    events? : MethodObject;
+    targets: NodeListObject;
+    events?: MethodObject;
     methods?: MethodObject;
   }
 
@@ -34,6 +41,6 @@ declare namespace Innerface {
     events: MethodObject;
     methods?: MethodObject;
     initialize(): void;
-    static getTargets(name: string, targets?: string | ConfigObject): NodeListObject;
+    // static getTargets(name: string, targets?: string | ConfigObject): NodeListObject;
   }
 }
