@@ -56,3 +56,18 @@ The `validateInput` module retrieves the value of an input immediately after it 
   id="validate_sample_3"
   data-if-validate-input="greaterThan[0]|lessThan[10]">
 ```
+
+#### Validate Form
+
+The `validateForm` module retrieves all `required` fields within a form. Upon validation, if any required field does not have a value, the module disables any buttons which could submit the form.
+
+```html
+<form action="#" data-if-validate-form>
+  <div class="form-group">
+    <label for="validate_form_field_1" class="control-label">Field One</label>
+    <input type="text" name="validate_form_field_1" id="validate_form_field_1" class="form-control" required>
+  </div>
+
+  <input type="submit" class="btn btn-default">
+</form>
+```
