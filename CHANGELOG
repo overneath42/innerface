@@ -1,0 +1,12 @@
+## version 0.1.0
+
+Initial release. Included following modules:
+
+- `disable`
+- `validateInput`
+
+## version 0.2.0
+
+Added:
+
+- `validateForm`
