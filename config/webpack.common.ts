@@ -1,6 +1,6 @@
 import * as webpack from 'webpack';
 
-const commonConfig : webpack.Configuration = {
+const commonConfig: webpack.Configuration = {
   entry: './src/index.ts',
   resolve: {
     extensions: ['.ts', '.js', '.json']
@@ -13,10 +13,7 @@ const commonConfig : webpack.Configuration = {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         enforce: 'pre',
-        use: [
-          'awesome-typescript-loader',
-          'lodash-ts-webpack-plugin'
-        ]
+        use: ['awesome-typescript-loader', 'lodash-ts-webpack-plugin']
       },
 
       // All output '.js' files will have any sourcemaps re-processed by
@@ -28,6 +25,6 @@ const commonConfig : webpack.Configuration = {
       }
     ]
   }
-}
+};
 
 export default commonConfig;

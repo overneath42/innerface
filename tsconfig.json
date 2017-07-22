@@ -22,7 +22,7 @@
     },
     "strictNullChecks": false,
     "skipLibCheck": true,
-    "target": "es6",
+    "target": "es5",
     "typeRoots": ["node_modules/@types"],
     "types": ["jest", "lodash-es", "inflection"]
   },

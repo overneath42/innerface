@@ -6,7 +6,7 @@ import commonConfig from './webpack.common';
 
 declare var __dirname;
 
-const config = function () : webpack.Configuration {
+const config = function(): webpack.Configuration {
   return webpackMerge(commonConfig, {
     devtool: 'eval-source-map',
     output: {
@@ -19,8 +19,8 @@ const config = function () : webpack.Configuration {
       ignored: /node_modules/,
       poll: true
     },
-    plugins: [new LiveReloadPlugin({appendScriptTag: true})]
-  })
+    plugins: [new LiveReloadPlugin({ appendScriptTag: true })]
+  });
 };
 
 export default config;

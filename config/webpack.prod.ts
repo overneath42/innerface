@@ -5,7 +5,7 @@ import commonConfig from './webpack.common';
 
 declare var __dirname;
 
-const config = function () : webpack.Configuration {
+const config = function(): webpack.Configuration {
   return webpackMerge(commonConfig, {
     devtool: 'source-map',
     output: {
@@ -13,11 +13,9 @@ const config = function () : webpack.Configuration {
       filename: 'innerface.min.js'
     },
     plugins: [
-      new webpack
-        .optimize
-        .UglifyJsPlugin({compress: true, comments: false})
+      new webpack.optimize.UglifyJsPlugin({ compress: true, comments: false })
     ]
-  })
+  });
 };
 
 export default config;
