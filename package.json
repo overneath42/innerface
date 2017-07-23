@@ -3,7 +3,7 @@
   "author": "Justin Toon",
   "version": "0.2.0",
   "description": "A system of simple UI actions implemented with an HTML API.",
-  "main": "dist/index.js",
+  "main": "dist/innerface.min.js",
   "typings": "./typings.d.ts",
   "repository": "https://github.com/overneath42/innerface.git",
   "keywords": [
