@@ -44,7 +44,9 @@ export default function disable(): Controller {
   const events: Global.MethodObject = {
     initOnLoad: () => {
       window.onload = () => {
-        const { target, condition } = targets;
+        const target = targets.target as NodeListOf<HTMLInputElement>;
+        const condition = targets.condition as NodeListOf<HTMLInputElement>;
+
         disableModule(target, condition).init();
       };
     }
