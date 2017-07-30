@@ -1,7 +1,7 @@
 {
   "name": "innerface",
   "author": "Justin Toon",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A system of simple UI actions implemented with an HTML API.",
   "main": "dist/innerface.min.js",
   "typings": "./typings.d.ts",

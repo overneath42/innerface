@@ -12,7 +12,7 @@ import { Global } from '../../typings.d';
  * A module for setting an attribute value on an element in response to an event.
  *
  * @module innerface/setAttr
- * @since 0.1.0
+ * @since 0.3.0
  */
 
 import {

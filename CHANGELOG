@@ -10,3 +10,9 @@ Initial release. Included following modules:
 Added:
 
 - `validateForm`
+
+## version 0.3.0
+
+Added:
+
+- `setAttr`

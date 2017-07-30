@@ -22,7 +22,7 @@ import setAttrModule from '../modules/if.module.setAttr';
 /**
  * The initialization function for creating the `setAttr` {@link Controller}.
  *
- * @since 0.2.0
+ * @since 0.3.0
  * @returns {Controller}
  */
 export default function setAttr(): Controller {
