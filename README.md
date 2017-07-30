@@ -33,6 +33,21 @@ The target inputs should all receive `data-if-disable`. Inputs will be grouped b
 - the linked attribute name
 - the reference value
 
+#### Set Attribute
+
+The `setAttr` module extracts a value from a source element, and sets it as the value of a specific attribute on one or more target elements. Multiple groups with different attributes can be targeted from a single source.
+
+```html
+<input
+  type="text"
+  data-if-set-attr="targetElement|value">
+<input
+  type="text"
+  data-if-set-attr-output="targetElement">
+```
+
+In this example, the value from the first element is transferred to the `value` attribute of the target; since the target is a text input, the value will be displayed within the input field.
+
 #### Validate Input
 
 The `validateInput` module retrieves the value of an input immediately after it is changed, and validates that value against a list of rules.
