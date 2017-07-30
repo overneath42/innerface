@@ -110,7 +110,7 @@ export function createDataFieldSelector(
     selectorString = selectorString.slice(1);
   }
 
-  return `[${dataAttr}${operator}"${selectorString}"]`;
+  return `[data-${dataAttr}${operator}"${selectorString}"]`;
 }
 
 /**
