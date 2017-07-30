@@ -18,7 +18,7 @@ export namespace Global {
     };
   }
 
-  export interface NodeListObject<T> {
+  export interface NodeListObject<T extends HTMLElement> {
     [key: string]: NodeListOf<T>;
   }
 

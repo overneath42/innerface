@@ -12,7 +12,8 @@ export const SELECTORS: Global.ConfigObject = {
     condition: '[data-if-disable-condition]'
   },
   setAttr: {
-    target: '[data-if-set-attr]'
+    target: '[data-if-set-attr]',
+    output: '[data-if-set-attr-output]'
   },
   setContent: {
     target: '[data-if-set-content]'
