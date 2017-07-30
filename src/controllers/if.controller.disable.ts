@@ -45,7 +45,7 @@ export default function disable(): Controller {
     initOnLoad: () => {
       window.onload = () => {
         const target = targets.target as NodeListOf<HTMLInputElement>;
-        const condition = targets.target as NodeListOf<HTMLInputElement>;
+        const condition = targets.condition as NodeListOf<HTMLInputElement>;
 
         disableModule(target, condition).init();
       };
