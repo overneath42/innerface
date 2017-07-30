@@ -21,14 +21,14 @@ import { SELECTORS } from '../if.const';
  */
 export default class Controller implements If.IController {
   public name: string;
-  public targets: Global.NodeListObject;
+  public targets: Global.NodeListObject<HTMLElement>;
   public events: Global.MethodObject;
   public methods: Global.MethodObject;
 
   constructor(props: If.IController) {
     this.name = props.name;
     this.targets = props.targets;
-    this.events = props.events;
+    this.events = props.events || {};
     this.methods = props.methods || {};
   }
 
@@ -44,8 +44,8 @@ export default class Controller implements If.IController {
   public static getTargets(
     name: string,
     targets?: string | Global.ConfigObject
-  ): Global.NodeListObject {
-    let selectedElements: Global.NodeListObject = {};
+  ): Global.NodeListObject<HTMLElement> {
+    let selectedElements: Global.NodeListObject<HTMLElement> = {};
 
     if (!targets) {
       targets = SELECTORS[name];
@@ -53,7 +53,7 @@ export default class Controller implements If.IController {
 
     if (targets) {
       forEach(targets, (target: string, key: string) => {
-        selectedElements[key] = document.querySelectorAll(target);
+        selectedElements[key] = document.querySelectorAll(target) as NodeListOf<HTMLElement>;
       });
     }
 

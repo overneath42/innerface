@@ -37,7 +37,7 @@ export default function validateInput(): Controller {
    * @const
    * @type {Object}
    */
-  const targets: Global.NodeListObject = Controller.getTargets(name);
+  const targets: Global.NodeListObject<HTMLElement> = Controller.getTargets(name);
 
   /**
    * Events created for the `validateInput` {@link Controller}.

@@ -38,7 +38,7 @@ export default function validateForm(): Controller {
    * @const
    * @type {Object}
    */
-  const targets: Global.NodeListObject = Controller.getTargets(name);
+  const targets: Global.NodeListObject<HTMLElement> = Controller.getTargets(name);
 
   /**
    * Events created for the `validateForm` {@link Controller}.

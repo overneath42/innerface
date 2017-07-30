@@ -18,8 +18,8 @@ export namespace Global {
     };
   }
 
-  export interface NodeListObject {
-    [key: string]: NodeListOf<any>;
+  export interface NodeListObject<T> {
+    [key: string]: NodeListOf<T>;
   }
 
   export type FormField = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
