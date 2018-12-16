@@ -41,10 +41,7 @@ export default class Controller implements If.IController {
    *
    * @returns {Object}
    */
-  public static getTargets(
-    name: string,
-    targets?: string | Global.ConfigObject
-  ): Global.NodeListObject<HTMLElement> {
+  public static getTargets(name: string, targets?: Global.ConfigObject<{}>): Global.NodeListObject<HTMLElement> {
     let selectedElements: Global.NodeListObject<HTMLElement> = {};
 
     if (!targets) {

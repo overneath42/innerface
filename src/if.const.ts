@@ -6,7 +6,10 @@ import { Global } from '../typings.d';
  * @constant
  * @type {object}
  */
-export const SELECTORS: Global.ConfigObject = {
+export const SELECTORS: Global.ConfigObject<{}> = {
+  detectScroll: {
+    target: '[data-if-detect-scroll]'
+  },
   disable: {
     target: '[data-if-disable]',
     condition: '[data-if-disable-condition]'
@@ -33,12 +36,13 @@ export const SELECTORS: Global.ConfigObject = {
  * @type {object}
  * @export
  */
-export const STATES: { [key: string]: string } = {
+export const STATES: Global.ConfigObject<string> = {
   isActive: 'is-active',
-  isVisible: 'is-visible',
-  isEditable: 'is-editable',
   isBeingEdited: 'is-being-edited',
-  isHidden: 'is-hidden',
   isDisabled: 'is-disabled',
-  isHovered: 'is-hovered'
+  isEditable: 'is-editable',
+  isHidden: 'is-hidden',
+  isHovered: 'is-hovered',
+  isScrollable: 'is-scrollable',
+  isVisible: 'is-visible'
 };

@@ -2,10 +2,9 @@
 // https://github.com/overneath42/innerface Definitions by: Justin Toon
 // <http://justintoon.com> TypeScript Version: 2.3
 
-
 export namespace Global {
-  export interface ConfigObject {
-    [key: string]: string | ConfigObject;
+  export interface ConfigObject<T> {
+    [key: string]: T | ConfigObject;
   }
 
   export interface MethodObject {
@@ -23,6 +22,8 @@ export namespace Global {
   }
 
   export type FormField = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+
+  export type ControllerInit = () => If.Controller;
 }
 
 declare class Innerface {

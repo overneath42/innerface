@@ -53,10 +53,7 @@ export function isNumber(value: string | number): boolean {
  *
  * @returns {HTMLElement}
  */
-export function findParentTag<I extends HTMLElement, O extends HTMLElement>(
-  node: I,
-  tag: string
-): O | I {
+export function findParentTag<I extends HTMLElement, O extends HTMLElement>(node: I, tag: string): O | I {
   const parent = node.parentNode as O;
 
   if (parent) {
@@ -95,10 +92,7 @@ export function findParentTag<I extends HTMLElement, O extends HTMLElement>(
  *
  * @return {string} - The formatted selector string.
  */
-export function createDataFieldSelector(
-  selectorString: string,
-  dataAttr: string
-): string {
+export function createDataFieldSelector(selectorString: string, dataAttr: string): string {
   let operator = '=';
 
   if (dataAttr.indexOf('-') === -1) {
@@ -120,10 +114,6 @@ export function createDataFieldSelector(
  * @param {string} str A space-separated list of events.
  * @param {Function} fn The callback function.
  */
-export function addEventListeners<T extends HTMLElement>(
-  el: T,
-  str: string,
-  fn: (event: Event) => any
-) {
+export function addEventListeners<T extends HTMLElement>(el: T, str: string, fn: (event: Event) => any) {
   str.split(' ').forEach(e => el.addEventListener(e, fn, false));
 }
