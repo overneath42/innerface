@@ -1,6 +1,6 @@
 import * as webpack from 'webpack';
 
-const commonConfig: webpack.Configuration = {
+export const commonConfig: webpack.Configuration = {
   entry: './src/index.ts',
   resolve: {
     extensions: ['.ts', '.js', '.json']
@@ -26,5 +26,3 @@ const commonConfig: webpack.Configuration = {
     ]
   }
 };
-
-export default commonConfig;

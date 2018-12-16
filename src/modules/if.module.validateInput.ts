@@ -66,23 +66,21 @@ export default function validateInput(
    *
    * @returns {(string|number)[]}
    */
-  function prepareValidation(
-    rules: string,
-    value: string
-  ): (string | number)[][] {
-    return rules.split('|').map((rule: string): (string | number)[] => {
-      return [].concat(
-        decodeString(rule).map(part => (isNumber(part) ? Number(part) : part)),
-        [value]
-      );
-    });
+  function prepareValidation(rules: string, value: string): (string | number)[][] {
+    return rules.split('|').map(
+      (rule: string): (string | number)[] => {
+        return [].concat(decodeString(rule).map(part => (isNumber(part) ? Number(part) : part)), [value]);
+      }
+    );
   }
 
-  function isValidInput(rules: string, value: string) {
-    return prepareValidation(
-      rules,
-      value
-    ).reduce((isValid: boolean, params: (string | number)[]) => {
+  /**
+   * Determines if the input validates against its rules.
+   *
+   * @protected
+   */
+  function isValidInput(rules: string, value: string): boolean {
+    return prepareValidation(rules, value).reduce((isValid: boolean, params: (string | number)[]) => {
       if (!isValid) return false;
 
       const ruleToExecute: string = params.shift().toString();

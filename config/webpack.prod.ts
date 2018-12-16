@@ -1,7 +1,7 @@
 import * as webpack from 'webpack';
 import * as webpackMerge from 'webpack-merge';
 import * as path from 'path';
-import commonConfig from './webpack.common';
+import { commonConfig } from './webpack.common';
 
 declare var __dirname;
 
