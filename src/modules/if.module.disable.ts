@@ -6,16 +6,14 @@
  * @license MIT
  */
 
-/**
- * A module for setting and managing a disabled state on an element.
- *
- * @module innerface/disable
- * @since 0.1.0
- */
-
 import { filter, forEach, includes, isEmpty } from 'lodash-es';
 import { STATES } from '../if.const';
 
+/**
+ * A module for setting and managing a disabled state on an element.
+ *
+ * @since 0.1.0
+ */
 export default function disable(
   targets: NodeListOf<HTMLInputElement>,
   conditions: NodeListOf<HTMLInputElement>
@@ -26,8 +24,6 @@ export default function disable(
    * Determine whether or not the element should be considered disabled.
    *
    * @protected
-   *
-   * @return {boolean} - <code>true</code> if the field should be disabled.
    */
   function shouldBeDisabled(condition: HTMLInputElement): boolean {
     const conditionValue: string[] = condition.dataset.ifDisableCondition
@@ -71,9 +67,6 @@ export default function disable(
    * Looks up related condition field for a disabled item.
    *
    * @protected
-   * @param {HTMLElement} id The lookup string.
-   *
-   * @returns {HTMLElement}
    */
   function getConditionField(target: HTMLInputElement): HTMLInputElement {
     return filter(
@@ -87,8 +80,6 @@ export default function disable(
    * Sets a listener on a condition field to watch for changes.
    *
    * @protected
-   * @param {HTMLInputElement} target The element to affect.
-   * @param {HTMLInputElement} condition The conditional field.
    */
   function setListener(
     target: HTMLInputElement,
@@ -102,9 +93,6 @@ export default function disable(
   /**
    *
    * Set a disabled state on a target.
-   *
-   * @param {HTMLInputElement} target The target to affect.
-   * @param {boolean} isDisabled Whether or not to disable.
    */
   function setState(target: HTMLInputElement, isDisabled: boolean) {
     target.disabled = isDisabled === true;

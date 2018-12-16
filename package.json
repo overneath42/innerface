@@ -47,7 +47,7 @@
   },
   "scripts": {
     "test": "jest",
-    "docs": "typedoc --out docs/ src/ --name 'Innerface' --readme README.md --target ES5",
+    "docs": "typedoc --out docs/ src/ --name 'Innerface' --mode modules --module commonjs --readme README.md --target ES5",
     "dev": "webpack --config ./config/webpack.dev.ts",
     "build": "rimraf ./dist && webpack --config ./config/webpack.prod.ts"
   },

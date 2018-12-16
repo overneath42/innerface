@@ -7,14 +7,6 @@ import { Global } from '../../typings.d';
  * @version 0.1.0
  * @license MIT
  */
-
-/**
- * A module for setting an attribute value on an element in response to an event.
- *
- * @module innerface/setAttr
- * @since 0.3.0
- */
-
 import {
   filter,
   find,
@@ -31,8 +23,6 @@ import { createDataFieldSelector, decodeString } from '../if.utils';
 
 /**
  * The `setAttr` module.
- *
- * @param {HTMLInputElement} source
  */
 export default function setAttr<T extends HTMLElement>(
   source: T,
